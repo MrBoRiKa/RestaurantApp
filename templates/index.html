@@ -1,0 +1,458 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Menu</title>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="icon" type="image/x-icon" href="../static/favicon.png">
+      <style>
+          body {
+              background: rgb(255,255,255);
+              background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(252,255,168,1) 100%);
+          }
+          #button {
+              border-radius: 35px;
+          }
+      </style>
+      
+      
+  </head>
+  <body class="container">
+    <nav class="navbar justify-content-between row">
+      <style>
+          .logo {
+              width: 100px;
+          }
+  
+          .navbarNav .nav-link {
+              color: orange;
+              text-decoration: none;
+          }
+          .navbarNav .nav-link:hover {
+              color: white;
+          }
+  
+          .navbarNav .nav-link:hover { 
+                  color: white;
+          }
+  
+    
+          .navbarNav h1 {
+              color: orange;
+              font-size:1rem; 
+          }
+  
+          
+          .navbarNav .nav-link:hover h1 {
+              color: white;
+          }
+  
+      </style>
+      <img id="logo" src="https://png.pngtree.com/png-clipart/20220903/ourmid/pngtree-chef-restaurant-logo-png-image_6136204.png" class="logo d-inline-block align-top" alt="Logo">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbarNav row justify-content-end" id="navbarNav">
+  
+          <div id="btngal" class="btngal col-4">
+              <a class="nav-link nav-item" href="#gallery">
+                  <h1>Gallery</h1>
+              </a>
+          </div>
+          <div id="btnabout" class="btnabout col-4">
+              <a class="nav-link link-dark" href="#aboutus">
+                  <h1>About Us</h1>
+              </a>
+          </div>
+          <div id="btncontact" class="btncontact col-4">
+              <a class="nav-link" href="#contact">
+                  <h1>Contact</h1>
+              </a>
+          </div>
+      </div>
+  </nav>
+  
+    <div class=" row justify-content-around">
+      <div class="col-4">
+          <h1>
+              Enjoy the Taste
+          </h1>
+          <h1>
+              of Italy
+          </h1>
+          <br>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad amet asperiores aspernatur blanditiis
+              consequuntur dolorem dolorum earum excepturi in mollitia, nam nihil officia recusandae rem repudiandae rerum
+              similique vel, veniam?</p>
+          <br/>
+          <div class="row justify-content-center">
+              <div class="col-6">
+                  <a href="#menu-section">
+                      <button class="btn btn-danger round" id="button">BOOK A TABLE</button>
+                  </a>
+              </div>
+              <div class="col-6">
+                  <a href="#menu-section">
+                      <button class="btn btn-danger round" id="button">SEE THE MENU</button>
+                  </a>
+              </div>
+          </div>
+      </div>
+      <div class="col-4">
+        <img width="500" height="500" src="../static/images/bolognese.png" class="">
+      </div>
+    </div>
+  <div class="w-100 row"
+  style="height: 70px;">
+  </div>
+      <div class="container" id="menu-section">
+          <header class="text-center my-4">
+              <h1>Menu</h1>
+              <style>
+      .search{
+        background-color: transparent;
+        border-radius: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+        
+      &:focus{
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+    
+
+      }
+      }
+              </style>
+              <form  class="  justify-content-center" method="get" action="/#menu-section">
+                  <input id="search" class="search form-control" type="text" name="search" placeholder="Find your next favorite dish!" value="{{ request.args.get('search', '') }}">
+                  <button class="btn btn-primary mt-4" type="submit">Search</button>
+              </form>
+          </header>
+          <nav class="text-center my-4">
+              <a class="btn btn-outline-secondary mx-1" href="/?category=all#menu-section">All</a>
+              <a class="btn btn-outline-secondary mx-1" href="/?category=Pizza#menu-section">Pizza</a>
+              <a class="btn btn-outline-secondary mx-1" href="/?category=Pasta#menu-section">Pasta</a>
+              <a class="btn btn-outline-secondary mx-1" href="/?category=Gelato#menu-section">Gelato</a>
+          </nav>
+          <main>
+              <div class="row">
+                
+                  {% for item in food_items %}
+                  <div class="col-md-4 mb-4">
+                    
+                      <div class="card ">
+                          <img class="card-img-top  " src="{{ item.image_url }}" alt="{{ item.name }}">
+                          <div class="card-body text-center">
+                            
+                              <h5 class="card-title">{{ item.name }}</h5>
+                              <p class="card-text">{{ item.size }} - ${{ item.price }}</p>
+                          
+                          </div>
+                      <style>
+                        .card{
+                          border-radius: 20px;
+                          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+                          max-width: fit-content;
+                          max-height: fit-content;
+                          
+                        }
+                      </style>    
+                      </div>
+
+                  </div>
+                  {% endfor %}
+              </div>
+          </main>
+      </div>
+      <div class="w-100" style="height: 70px"></div>
+      <div class=" justify-content-center align-items-center" id="gallery">
+        <title>Gallery</title>
+      <style>
+          body {
+              margin: 0;
+              min-height: 100vh;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              background: #ffd94ebb;
+          }
+
+          h1 {
+              margin: 0;
+              padding-bottom: 20px; /* Adds some space between the title and the gallery */
+              text-align: center;
+          }
+
+          .gallery {
+              --s: 150px; /* control the size of the images */
+              display: grid;
+              grid-template-columns: repeat(3, auto);
+              gap: 5px;
+              position: relative;
+              justify-content: center;
+              align-items: center;
+              width: fit-content;
+              height: fit-content;
+              margin-left: 30%;
+          }
+
+          .gallery input {
+              position: absolute;
+              border: 2px solid #000;
+              border-radius: 50%;
+              inset: calc(50% - var(--s)/3);
+              cursor: pointer;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+              --g: linear-gradient(#000 0 0) no-repeat;
+              background: var(--g) 50%/var(--b, 0%) 3px, var(--g) 50%/3px var(--b, 0%);
+              transition: 1.5s;
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              appearance: none;
+          }
+
+          .gallery > img {
+              width: var(--s);
+              aspect-ratio: 1;
+              object-fit: cover;
+              transform: scale(.1);
+              filter: brightness(0);
+              pointer-events: none;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+
+              transform-origin: var(--x) var(--y);
+              transition: 1s calc((var(--i) - 1) * .1s);
+          }
+
+          .gallery > img:nth-of-type(1) {--i: 1; --x: 150%; --y: 150%;}
+          .gallery > img:nth-of-type(2) {--i: 2; --x:  50%; --y: 150%;}
+          .gallery > img:nth-of-type(3) {--i: 3; --x: -50%; --y: 150%;}
+          .gallery > img:nth-of-type(4) {--i: 4; --x: 150%; --y: 50%; }
+          .gallery > img:nth-of-type(5) {--i: 5;}
+          .gallery > img:nth-of-type(6) {--i: 6; --x: -50%; --y: 50%; }
+          .gallery > img:nth-of-type(7) {--i: 7; --x: 150%; --y: -50%;}
+          .gallery > img:nth-of-type(8) {--i: 8; --x:  50%; --y: -50%;}
+          .gallery > img:nth-of-type(9) {--i: 9; --x: -50%; --y: -50%;}
+
+          .gallery > input:checked ~ img {
+              transform: scale(1);
+              filter: brightness(1);
+              pointer-events: initial;
+          }
+
+          .gallery > input:checked {
+              transform: translateY(calc(1.75 * var(--s))) scale(.5) rotate(45deg);
+              --b: 70%;
+          }
+      </style>
+  </head>
+  <body>
+      <h1>Gallery</h1>
+      <div class="gallery">
+          <input type="checkbox">
+          <img src="../static/images/gallery/gallery-1.jpg" alt="">
+          <img src="../static/images/gallery/gallery-2.jpg" alt="">
+          <img src="../static/images/gallery/gallery-3.jpg" alt="">
+          <img src="../static/images/gallery/gallery-4.jpg" alt="">
+          <img src="../static/images/gallery/gallery-5.jpg" alt="">
+          <img src="../static/images/gallery/gallery-6.jpg" alt="">
+          <img src="../static/images/gallery/gallery-7.jpg" alt="">
+          <img src="../static/images/gallery/gallery-8.jpg" alt="">
+          <img src="../static/images/gallery/gallery-3.jpg" alt="">
+      </div>
+
+          
+        <div class="w-100" style="height: 100px"></div>
+        <style>
+          .about{
+            background-color: rgb(255, 208, 122);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            font-family: sans-serif;
+            padding: 30px  ;
+          }
+        </style>
+      <section id="about" class="about section pb-5">
+          <div class="section-title d-flex align-items-center justify-content-center pb-5" id="aboutus">
+          <h1>About Us</h1>
+        </div>
+
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="row gy-4">
+              <style>
+                .aboutimg{
+                  border-radius: 20px;
+                  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+
+                }
+              </style>
+              <div class="col-lg-6 order-1 order-lg-2">
+                <img id="aboutimg"  src="../static/images/about.jpg" class="aboutimg img-fluid about-img" alt="">
+              </div>
+              <div  class="col-lg-6 order-2 order-lg-1 content">
+                <h3>Voluptatem dignissimos provident</h3>
+                <p class="fst-italic">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua.
+                </p>
+                <ul>
+                  <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                  <li><i class="bi bi-check2-all"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
+                </ul>
+                <p>
+                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+                <div class="w-100" style="height: 50px"></div>
+        <section>
+
+      <div class="section-title d-flex align-items-center justify-content-center pt-5" id="contact">
+          <h1>Contact</h1>
+        </div>
+
+        <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
+          <iframe style="border-radius:20px; width: 100%; height: 400px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+          <div class="row gy-4">
+
+            <div class="col-lg-4">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Location</h3>
+                  <p>A108 Adam Street, New York, NY 535022</p>
+                </div>
+              </div>
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Open Hours</h3>
+                  <p>Monday-Saturday:<br>11:00 AM - 2300 PM</p>
+                </div>
+              </div>
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>+1 5589 55488 55</p>
+                </div>
+              </div>
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>info@example.com</p>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="col-lg-8">
+              <form action="{{ url_for('submit_contact') }}" method="POST">
+                <div class="row gy-4">
+
+                  <div class="col-md-6">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  </div>
+
+                  <div class="col-md-6 ">
+                    <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  </div>
+
+                  <div class="col-md-12 pt-1">
+                    <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  </div>
+
+                  <div class="col-md-12 pt-1">
+                    <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  </div>
+
+                  <div class="col-md-12 text-center pt-3">
+
+                    <button class="btn btn-primary" type="submit">Send Message</button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+      <div class="row justify-content-center w-100">
+          <div class="section-title d-flex align-items-center justify-content-center pt-5 col-4" id="review">
+              <h1>Reviews</h1>
+          </div>
+      </div>
+      <section class="justify-content-center w-100 row">
+          <form  method="POST" action="{{ url_for('submit_review') }}">
+              <div class="row gy-4">
+                  <div class="col-md-12">
+                      <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  </div>
+                  <div class="col-md-12 pt-1">
+                      <textarea class="form-control" name="review" rows="4" placeholder="Your Review" required></textarea>
+                  </div>
+                  <div class="col-md-12 text-center pt-3">
+                      <button class="btn btn-primary" type="submit">Submit Review</button>
+                  </div>
+              </div>
+          </form>
+          <div class="w-100" style="height: 100px;"></div>
+          <table class="table table-light table-striped w-75">
+    <thead id="table" class="table table-dark">
+      <style>
+        .table{
+          border-top:rgb(255, 225, 143) solid;
+          background-color: rgb(255, 225, 143);
+          color: #000;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+          padding: 0;
+        }
+
+        tr{
+          
+          border-top:rgb(255, 225, 143) solid;
+          border-bottom:rgb(255, 225, 143) solid;
+          background-color: rgb(255, 225, 143);
+        }
+      </style>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Review</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+    {%for r in reviews%}
+        <tr>
+            <th>{{ r.id }}</th>
+            <th>{{ r.name }}</th>
+            <th>{{ r.review }}</th>
+        </tr>
+    {%endfor%}
+    </tbody>
+  </table>
+      </section>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+  </html>
